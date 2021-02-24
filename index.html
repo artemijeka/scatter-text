@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Разбрасывание текста на буквы и собирание обратно в текст | Scattering text into letters and picking back into text</title>
+  <link rel="stylesheet" href="./style.min.css">
+</head>
+
+<body>
+
+  <main>
+
+    <section class="scatter-text__container">
+      <p class="scatter-text">
+        Красивым быть – не значит им родиться,<br>
+        Ведь красоте мы можем научиться.<br>
+        Когда красив душою Человек –<br>
+        Какая внешность может с ней сравниться?<br>
+        <br><br>
+        Чем ниже человек душой,<br>
+        тем выше задирает нос.<br>
+        Он носом тянется туда,<br>
+        куда душою не дорос.<br>
+        <br><br>
+        Кто жизнью бит, тот большего добьется.<br>
+        Пуд соли съевший выше ценит мед.<br>
+        Кто слезы лил, тот искренней смеется.<br>
+        Кто умирал, тот знает, что живет!<br>
+        <br><br>
+        В одно окно смотрели двое.<br>
+        Один увидел дождь и грязь.<br>
+        Другой — листвы зелёной вязь,<br>
+        весну и небо голубое.<br>
+        В одно окно смотрели двое.<br>
+        <br><br>
+        Мы источник веселья — и скорби рудник.<br>
+        Мы вместилище скверны — и чистый родник.<br>
+        Человек, словно в зеркале мир — многолик.<br>
+        Он ничтожен — и он же безмерно велик!<br>
+      </p>
+    </section>
+
+  </main>
+  
+  <script src="./anime.js"></script>
+
+  <script>
+    var scatterText = document.querySelector('.scatter-text');
+    scatterText.innerHTML = scatterText.textContent.replace(/\S/g, '<span>$&</span>');
+
+    var animationForText = anime.timeline({
+      targets: '.scatter-text span',
+      easing: 'easeInOutExpo',
+      loop: true,
+    });
+
+    animationForText
+      .add({
+        rotate: function(){
+          return anime.random(-360,360)
+        },
+        translateX: function(){
+          return anime.random(-500,500)
+        },
+        translateY: function(){
+          return anime.random(-500,500)
+        },
+        duration: 5000,
+        delay: anime.stagger(15)
+      })
+
+      .add({
+        rotate: 0,
+        translateX: 0,
+        translateY: 0,
+        duration: 5000,
+        delay: anime.stagger(15)
+      });
+  </script>
+
+
+</body>
+
+</html>
